@@ -1,0 +1,143 @@
+<div class="containerDiv">
+
+<div class="leftDiv">
+  <div class="movie-container" *ngIf="userRole=='admin'">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Add Movie
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  <div>
+      <div class="movie_id">
+        <mat-form-field>
+          <input matInput placeholder="Enter ID" name="movieId" [(ngModel)]="movieObj.movieId" required>
+        </mat-form-field>
+      </div>
+
+      <div class="movie_name">
+        <mat-form-field>
+          <input matInput placeholder="Enter Movie Name" name="movie_name" [(ngModel)]="movieObj.movieName" required>
+        </mat-form-field>
+      </div>
+
+      <div class="theater_name">
+        <mat-form-field>
+          <input matInput placeholder="Enter Theater Name" name="theater_name" [(ngModel)]="movieObj.theaterName" required>
+        </mat-form-field>
+      </div>
+
+      <div class="seat_count">
+        <mat-form-field>
+          <input matInput placeholder="Enter Theater Capacity" name="theater_capacity" [(ngModel)]="movieObj.seatCount" required>
+        </mat-form-field>
+      </div>
+
+      <mat-action-row>
+        <div class="conatiner-fluid padding">
+            <div class="row">
+                <div class="col-md-2" style="margin-left: 80px;">
+                    <button mat-mini-fab color="primary" (click)="addMovie()">
+                        <mat-icon>plus_one</mat-icon>
+                      </button>
+                </div>
+                <mat-error *ngIf="addMoviesErrorMessage">{{addMoviesErrorMessage}}</mat-error>
+            </div>
+        </div>
+
+    </mat-action-row>
+    </div>
+
+  </mat-expansion-panel>
+  </div>
+
+
+    <br>
+    <!-- search by id -->
+    <div class="centerEverything" *ngIf="movieArr[0]?.movieName">
+    <h3>Search By ID</h3>
+
+    <input type="number" [(ngModel)]="movieId">
+
+    <div *ngFor="let movie of movieArr">
+      <div *ngIf="movie.movieId == movieId">
+        <div class="movie-card">
+          <mat-card-title class="movie-title"></mat-card-title>
+          <mat-card-content class="movie-details">
+            <!-- <p>Movie Details:</p> -->
+            <p style="font-size: x-large;font-weight: 900;font-family: Verdana, Geneva, Tahoma, sans-serif;">{{movie.movieName}}</p>
+            <h4>Movie Id: {{movie.movieId}}</h4>
+            <h2 style="font-size: large;">{{movie.theaterName}}</h2>
+            <h3>
+              <ng-container *ngIf="movie.seatCount > 0; else housefullBlock">
+                Available Seats:{{ movie.seatCount }}
+              </ng-container>
+              <ng-template #housefullBlock>
+                <H1 style="font-weight: bolder; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">SOLD OUT</H1>
+              </ng-template>
+              </h3>
+            <mat-card-actions>
+              <button class="button-book" (click)="passMovieValue(movie)" routerLink="/bookTicket" [disabled]="movie.seatCount < 1"><a [ngStyle]="{ 'color': (movie.seatCount < 1 ? 'gray' : '') }">Book Ticket</a></button>
+              <button class="button"*ngIf="userRole=='admin'" (click)="deleteMovie(movie.movieId)">Delete Movie</button>
+              <br><button class="button"*ngIf="userRole=='admin'" (click)="openFormDialog(movie.movieId)">Update</button>
+            </mat-card-actions>
+          </mat-card-content>
+      </div>
+    </div>
+    </div>
+    </div>
+    <ng-template #MovieNotFound>MOVIE NOT FOUND</ng-template>
+</div>
+<!-- end of left div -->
+
+
+<div class="rightDiv">
+  <div *ngIf="movieArr.length>0;else elseTemplate">
+    <button style="width: 100%;text-align: center;" mat-flat-button color="warn">AVAILABLE MOVIES</button>
+  </div>
+
+  <ng-template #elseTemplate>
+  <button style="width: 100%;text-align: center;" mat-flat-button color="warn">NO AVAILABLE MOVIES</button>
+  </ng-template>
+
+   <!-- next section -->
+  <div class="movie-container">
+    <div class="row" *ngIf="movieArr[0]?.movieName">
+      <div class="col-md-4 mx-auto my-8 movie-card" *ngFor="let movie of movieArr">
+
+        <mat-card-title class="movie-title"></mat-card-title>
+        <mat-card-content class="movie-details">
+          <!-- <p>Movie Details:</p> -->
+          <p style="font-size: x-large;font-weight: 900;font-family: Verdana, Geneva, Tahoma, sans-serif;">{{movie.movieName}}</p>
+          <h4>Movie Id: {{movie.movieId}}</h4>
+          <h2 style="font-size: large;">{{movie.theaterName}}</h2>
+          <h3>
+            <ng-container *ngIf="movie.seatCount > 0; else housefullBlock">
+              Available Seats:{{ movie.seatCount }}
+            </ng-container>
+            <ng-template #housefullBlock>
+              <H1 style="font-weight: bolder; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">SOLD OUT</H1>
+            </ng-template>
+            </h3>
+          <mat-card-actions>
+            <button class="button-book" (click)="passMovieValue(movie)" routerLink="/bookTicket" [disabled]="movie.seatCount < 1"><a >Book Ticket</a></button>
+            <br><button class="button"*ngIf="userRole=='admin'" (click)="deleteMovie(movie.movieId)">Delete Movie</button>
+            <br><button class="button"*ngIf="userRole=='admin'" (click)="openFormDialog(movie.movieId)">Update</button>
+          </mat-card-actions>
+        </mat-card-content>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- end of right div -->
+
+
+</div>
+
+
+
+
+
+

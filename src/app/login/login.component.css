@@ -1,0 +1,99 @@
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.5;
+  }
+
+
+
+  header {
+    background-color: #333;
+    padding: 20px;
+    color: #fff;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo a {
+    font-size: 44px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .menu li {
+    display: inline-block;
+    margin-left: 20px;
+  }
+
+  .menu li a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .main {
+    padding: 20px;
+  }
+
+  .banner {
+    background-image: url('../../assets/banner.jpg');
+    opacity: 100%;
+    background-size: cover;
+    background-position: center;
+    padding: 100px;
+    text-align: center;
+    color: #fff;
+  }
+
+  .banner h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #DF1827;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  /* form styles */
+
+
+  .container{
+    margin: 2 auto;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px var(--shadow-dark);
+    display: flex;
+  }
+
+  .leftDiv{
+    flex: 2;
+    float: left;
+    text-align: right;
+    padding-right: 40px;
+  }
+
+  .rightDiv{
+    margin-top: 4%;
+    padding-left: 20px;
+    flex: 1;
+    float: right;
+    text-align: left;
+  }
+
+  .centerDiv{
+    flex: 1;
+    text-align: center;
+  }
+
+

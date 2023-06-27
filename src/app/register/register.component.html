@@ -1,0 +1,87 @@
+
+<div class="container">
+  <div class="leftDiv">
+      <img src=>
+  </div>
+
+  <div class="centerDiv">
+      <form #userRegistration = "ngForm" (ngSubmit) = "registerUser(userRegistration.value)">
+          <mat-label style="font: 15px Poppins,sans-serif;font-weight: 900;">SIGN UP</mat-label><br><br>
+
+          <mat-form-field appearance="outline">
+              <mat-label>User Name</mat-label>
+              <input matInput placeholder="username"
+              [(ngModel)]="userRegistrationDetails.username" name="usernname"
+              required minlength="4" pattern="[A-Za-z]*">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput placeholder="password" type="password"
+              [(ngModel)]="userRegistrationDetails.password" name="password"
+              required minlength="4" appForbiddenName="12345678" pattern="[A-Za-z0-9]*">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput placeholder="firstName"
+              [(ngModel)]="userRegistrationDetails.firstName" name="firstName"
+              required minlength="3" appForbiddenName="bob">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput placeholder="lastName"
+              [(ngModel)]="userRegistrationDetails.lastName" name="lastName"
+              required minlength="3" appForbiddenName="bob">
+            </mat-form-field>
+            <br>
+
+
+            <mat-form-field appearance="outline">
+              <mat-label>Email Address</mat-label>
+              <input matInput placeholder="email"
+              [(ngModel)]="userRegistrationDetails.email" name="email"
+              appForbiddenName="anything@gmail.com" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Contact Number</mat-label>
+              <input matInput placeholder="contactNumber"
+              [(ngModel)]="userRegistrationDetails.contactNumber" name="contactNumber"
+              appForbiddenName="0123456789" pattern="^\+?[1-9]\d{1,14}$">
+            </mat-form-field>
+            <br>
+
+            <!-- <mat-form-field appearance="outline">
+              <mat-label>User Role</mat-label>
+              <input matInput placeholder="user/admin"
+              [(ngModel)]="userRegistrationDetails.userRole" name="userRole"
+              required minlength="4" appForbiddenName="bob">
+            </mat-form-field>
+            <br> -->
+
+            <label>What is your favorite Movie:</label><br>
+            <mat-form-field appearance="outline">
+              <mat-label>Security Question</mat-label>
+              <input matInput placeholder="Answer"
+              [(ngModel)]="answer" name="answer"
+              required minlength="3" appForbiddenName="bob">
+            </mat-form-field>
+
+            <br>
+            <button type="submit" value="submit" mat-flat-button color="accent"> register </button>
+            Already registered?<a routerLink="/login" class="loginLink">    login</a>
+      </form>
+  </div>
+
+  <div class="rightDiv">
+    
+</div>
+
+</div>
+

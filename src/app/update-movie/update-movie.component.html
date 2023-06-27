@@ -1,0 +1,44 @@
+<!-- app.component.html -->
+<div class="container">
+  <h2>Update Movie</h2>
+  <form #movieForm="ngForm" (ngSubmit)="updateMovie()">
+    <div class="form-group">
+      <label for="movieId">Movie ID:</label>
+      <input type="text" id="movieId" name="movieId" class="form-control" required minlength="3"
+        [(ngModel)]="updateMovieVariable.movieId" #movieIdInput="ngModel" required>
+      <div *ngIf="movieIdInput.invalid && (movieIdInput.dirty || movieIdInput.touched)"
+        class="text-danger">
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="movieName">Movie Name:</label>
+      <input type="text" id="movieName" name="movieName" class="form-control" required
+        [(ngModel)]="updateMovieVariable.movieName" #movieNameInput="ngModel">
+      <div *ngIf="movieNameInput.invalid && (movieNameInput.dirty || movieNameInput.touched)"
+        class="text-danger">
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="theaterName">Theater Name:</label>
+      <input type="text" id="theaterName" name="theaterName" class="form-control" required
+        [(ngModel)]="updateMovieVariable.theaterName" #theaterNameInput="ngModel">
+      <div *ngIf="theaterNameInput.invalid && (theaterNameInput.dirty || theaterNameInput.touched)"
+        class="text-danger">
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="seatCount">Seat Count:</label>
+      <input type="number" id="seatCount" name="seatCount" class="form-control" required
+        [(ngModel)]="updateMovieVariable.seatCount" #seatCountInput="ngModel">
+      <div *ngIf="seatCountInput.invalid && (seatCountInput.dirty || seatCountInput.touched)"
+        class="text-danger">
+
+      </div>
+    </div>
+    <button type="submit" mat-raised-button color="accent">Update Movie</button>
+    <mat-error *ngIf="movieUpdateMessage">{{movieUpdateMessage}}</mat-error>
+  </form>
+</div>

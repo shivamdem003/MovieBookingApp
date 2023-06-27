@@ -1,0 +1,65 @@
+
+<main>
+    <section class="banner">
+      <h1 style="font-weight: bolder;">Experience the Magic of Movies</h1>
+      <p style="font-weight: bold;">Book tickets for the latest movies, near you!</p>
+      <button class="btn" (click)="loadDropdown()" routerLink="/movies">Explore Now</button>
+    </section>
+</main>
+
+  <div class="container">
+
+      <div class="leftDiv">
+        <app-about></app-about>
+      </div>
+
+      <div class="centerDiv">
+      <form #userlogin = "ngForm" (ngSubmit) = "login(userlogin.value)">
+        <mat-label style="font: 15px Poppins,sans-serif;font-weight: 900;">LOG IN</mat-label><br><br>
+
+            <mat-form-field appearance="outline">
+              <mat-label>User Name</mat-label>
+              <input matInput placeholder="Username"
+              [(ngModel)]="userLoginDetails.username" name="usernname" #usernameinput
+              required minlength="4" pattern="[A-Za-z]*">
+              <mat-error *ngIf="usernameinput.value">username invalid</mat-error>
+            </mat-form-field>
+
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="password" type="password"
+            [(ngModel)]="userLoginDetails.password" name="password" #formpassword
+            required minlength="4" appForbiddenName="12345678" pattern="[A-Za-z0-9]*">
+            <!-- <mat-error *ngIf="passwordErrorMessage">{{ passwordErrorMessage }}</mat-error> -->
+            <mat-error *ngIf="formpassword.value">Password is incorrect</mat-error>
+          </mat-form-field>
+
+
+
+        <mat-form-field appearance="outline">
+          <mat-label>User Role</mat-label>
+          <input matInput placeholder="User/Admin" #UserRole
+          [(ngModel)]="userLoginDetails.userRole" name="userRole"
+          required="user" pattern="^(admin|user)$">
+        <mat-error *ngIf="UserRole.value">Role must be admin or user</mat-error>
+
+        </mat-form-field>
+
+
+
+
+    <button type="submit" value="submit" class="btn btn-danger" style="width: 80%;">LOG IN</button>
+    <mat-error *ngIf="userErrorMessage">{{userErrorMessage}}</mat-error>
+    </form>
+      </div>
+
+
+    <div class="rightDiv">
+
+      <button routerLink="/register" mat-flat-button color="accent">register</button><br>
+      <a routerLink="/forgetPassword" >Forgot password?</a>
+     </div>
+
+   </div>

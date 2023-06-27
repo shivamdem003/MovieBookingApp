@@ -1,0 +1,104 @@
+
+
+<mat-card class="card2">
+  <h1 style="color: brown; font-weight: 900; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">BOOK TICKETS NOW</h1>
+<div class="movie-container">
+
+  <div form-container *ngIf="movie.movieId!=null;else noMovieBlock">
+    <div>
+      <label for="name" style="color: crimson;">username:{{username}}</label>
+    </div>
+    <br>
+
+    <div>
+      <label>ID:{{movie.movieId}}</label>
+    </div>
+
+      <div>
+        <label>Movie :  {{movie.movieName}}</label>
+      </div>
+
+
+      <div>
+        <label>Theater :  {{movie.theaterName}}</label>
+      </div>
+
+
+      <div>
+        <label>Available seats :  {{movie.seatCount}}</label>
+      </div>
+
+      <div class="no_of_seats">
+        <mat-form-field>
+          <input type="number" matInput placeholder="Enter no of seats" name="movie_noOfSeatBooked" [(ngModel)]="ticketObj.noOfSeatsBooked" required>
+        </mat-form-field>
+      </div>
+
+
+      <mat-action-row>
+        <div class="conatiner-fluid padding">
+            <div class="row" *ngIf="ticketObj.noOfSeatsBooked<=movie.seatCount||ticketObj.noOfSeatsBooked===undefined ;else housefullBlock">
+                    <button (click)="bookTicket()" class="btn btn-success">BUY TICKET</button>
+
+                    <button *ngIf="movie.seatCount" (click)="clearTicketDetails()" class="btn btn-warning">Clear Ticket</button>
+            </div>
+            <ng-template #housefullBlock><p style="color: crimson; text-align: center;">{{ticketObj.noOfSeatsBooked}} no. of tickets
+              <br> are not Available.
+              <br> please stay in limited seats.</p>
+            </ng-template>
+
+        </div>
+    </mat-action-row>
+    </div>
+
+  </div>
+
+</mat-card>
+
+
+<div class="container-table" *ngIf="userRole=='admin'">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="transcationalId">
+    <th mat-header-cell *matHeaderCellDef> TranscationalId. </th>
+    <td mat-cell *matCellDef="let ticket"> {{ticket.transcationalId}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="movie_id_fk">
+    <th mat-header-cell *matHeaderCellDef> Movie ID </th>
+    <td mat-cell *matCellDef="let ticket"> {{ticket.movie_id_fk}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="customerName">
+    <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+    <td mat-cell *matCellDef="let ticket"> {{ticket.customerName}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="movieName">
+    <th mat-header-cell *matHeaderCellDef> movieName </th>
+    <td mat-cell *matCellDef="let ticket"> {{ticket.movieName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="theaterName">
+    <th mat-header-cell *matHeaderCellDef> theaterName </th>
+    <td mat-cell *matCellDef="let ticket"> {{ticket.theaterName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="noOfSeatsBooked">
+    <th mat-header-cell *matHeaderCellDef> noOfSeatsBooked </th>
+    <td mat-cell *matCellDef="let ticket"> {{ticket.noOfSeatsBooked}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+
+<ng-template #noMovieBlock>
+  NO MOVIES SELECTED
+</ng-template>
+
+
